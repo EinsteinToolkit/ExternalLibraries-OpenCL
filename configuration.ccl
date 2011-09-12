@@ -1,0 +1,8 @@
+# Configuration definitions for thorn OpenCL
+
+PROVIDES OpenCL
+{
+  SCRIPT OpenCL.sh
+  LANG bash
+  OPTIONS OPENCL_DIR OPENCL_INC_DIRS OPENCL_LIB_DIRS OPENCL_LIBS
+}
