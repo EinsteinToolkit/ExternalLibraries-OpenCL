@@ -21,3 +21,33 @@ personal computers, servers and handheld/embedded devices. OpenCL
 (Open Computing Language) greatly improves speed and responsiveness
 for a wide spectrum of applications in numerous market categories from
 gaming and entertainment to scientific and medical software.
+
+
+
+There seem to be four OpenCL implementations available at this time.
+Unfortunately, they each have their drawbacks:
+
+- AMD: Available at
+  <http://developer.amd.com/zones/openclzone/pages/default.aspx>. This
+  supports both CPUs and ATI GPUs. Unfortunately, the OpenCL compiler
+  seems to produce code with a low quality.
+
+- Apple: Included with the operating system, available by default.
+  This supports both CPU and GPU. The compiler is based on LLVM.
+  Unfortunately, there seem to be serious bugs -- I can't get the cos
+  function to provide correct results.
+
+- Intel: Available at
+  <http://software.intel.com/en-us/articles/opencl-sdk/>. This
+  supports only (Intel?) CPUs. The compiler is based on LLVM, and the
+  implementation is also based on Intel's TBB (Threading Building
+  Blocks). I don't know how to disassemble the generated code, except
+  when there is a segfault.
+
+- NVidia: Available at <http://developer.nvidia.com/opencl>, included
+  in their CUDA distribution. This supports only GPUs.
+
+In addition, Wikipedia <http://en.wikipedia.org/wiki/OpenCL> lists two
+IBM implementations for their Power processor and for Intel compatible
+CPUs, respectively. The latter may be identical with or similar to
+AMD's implementation.
