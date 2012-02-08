@@ -15,9 +15,16 @@ set -e                          # Abort on errors
 ################################################################################
 
 if [ -z "${OPENCL_DIR}" ]; then
-    echo "BEGIN ERROR"
-    echo "OpenCL selected, but OPENCL_DIR not set."
-    echo "END ERROR"
+    if [ -r /System/Library/Frameworks/OpenCL.framework ]; then
+        OPENCL_DIR=/System/Library/Frameworks/OpenCL.framework
+        OPENCL_INC_DIRS=/System/Library/Frameworks/OpenCL.framework/Headers
+        OPENCL_LIB_DIRS=/System/Library/Frameworks/OpenCL.framework/Libraries
+        OPENCL_LIBS="-Wl,-framework -Wl,OpenCL"
+    else
+        echo "BEGIN ERROR"
+        echo "OpenCL selected, but OPENCL_DIR not set."
+        echo "END ERROR"
+    fi
 fi
 
 # Set options
