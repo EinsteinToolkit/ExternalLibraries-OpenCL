@@ -24,6 +24,7 @@ if [ -z "${OPENCL_DIR}" ]; then
         echo "BEGIN ERROR"
         echo "OpenCL selected, but OPENCL_DIR not set."
         echo "END ERROR"
+        exit 1
     fi
 fi
 
