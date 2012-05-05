@@ -55,7 +55,7 @@ int output_device_info(cl_device_id device_id)
         OpenCL_VWarn("Error: Failed to access device name!");
         return EXIT_FAILURE;
     }
-    OpenCL_VInfo(" Device: %s", device_name);
+    OpenCL_VInfo("  Device: %s", device_name);
 
     err = clGetDeviceInfo(device_id, CL_DEVICE_TYPE, sizeof(device_type), &device_type, NULL);
     if (err != CL_SUCCESS)
@@ -63,14 +63,6 @@ int output_device_info(cl_device_id device_id)
         OpenCL_VWarn("Error: Failed to access device type information!");
         return EXIT_FAILURE;
     }
-    if(device_type  == CL_DEVICE_TYPE_GPU)
-       OpenCL_VInfo("  GPU from ");
-
-    else if (device_type == CL_DEVICE_TYPE_CPU)
-       OpenCL_VInfo("  CPU from ");
-
-    else 
-       OpenCL_VInfo("  non CPU or GPU processor from ");
 
     err = clGetDeviceInfo(device_id, CL_DEVICE_VENDOR, sizeof(vendor_name), &vendor_name, NULL);
     if (err != CL_SUCCESS)
@@ -78,7 +70,12 @@ int output_device_info(cl_device_id device_id)
         OpenCL_VWarn("Error: Failed to access device vendor name!");
         return EXIT_FAILURE;
     }
-    OpenCL_VInfo("   %s", vendor_name);
+    if(device_type  == CL_DEVICE_TYPE_GPU)
+      OpenCL_VInfo("    GPU from %s", vendor_name);
+    else if (device_type == CL_DEVICE_TYPE_CPU)
+      OpenCL_VInfo("    CPU from %s", vendor_name);
+    else 
+      OpenCL_VInfo("    non CPU or GPU processor from %s", vendor_name);
 
     err = clGetDeviceInfo(device_id, CL_DEVICE_MAX_COMPUTE_UNITS, sizeof(cl_uint), &comp_units, NULL);
     if (err != CL_SUCCESS)
@@ -86,7 +83,7 @@ int output_device_info(cl_device_id device_id)
         OpenCL_VWarn("Error: Failed to access device number of compute units !");
         return EXIT_FAILURE;
     }
-    OpenCL_VInfo("   with a max of %d compute units",comp_units);
+    OpenCL_VInfo("      with a max of %d compute units",comp_units);
 
 #ifdef VERBOSE
 //

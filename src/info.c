@@ -58,7 +58,7 @@ void OpenCL_PrintInfo(CCTK_ARGUMENTS)
             OpenCL_VWarn("Error: Failed to access platform name!");
             return;
         }
-        OpenCL_VInfo("Platform %d is %s ", i+1, platform_name);
+        OpenCL_VInfo("Platform %d is %s", i+1, platform_name);
 
         err = clGetPlatformInfo(*(platformId+i), CL_PLATFORM_VENDOR, sizeof(vendor_name), &vendor_name, NULL);
         if (err != CL_SUCCESS)
