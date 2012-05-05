@@ -24,6 +24,8 @@ gaming and entertainment to scientific and medical software.
 
 
 
+2. Available implementations
+
 There seem to be four OpenCL implementations available at this time.
 Unfortunately, they each have their drawbacks:
 
@@ -51,3 +53,11 @@ In addition, Wikipedia <http://en.wikipedia.org/wiki/OpenCL> lists two
 IBM implementations for their Power processor and for Intel compatible
 CPUs, respectively. The latter may be identical with or similar to
 AMD's implementation.
+
+
+
+3. Disassembling OpenCL code
+
+Intel:
+
+env PATH=$PATH:/usr/local/intel_ocl_sdk_1.5_x64/usr/lib64/OpenCL/vendors/intel CLASSPATH=/usr/local/intel_ocl_sdk_1.5_x64/usr/lib64/OpenCL/vendors/intel LD_LIBRARY_PATH=/usr/local/intel_ocl_sdk_1.5_x64/usr/lib64/OpenCL/vendors/intel /usr/local/intel_ocl_sdk_1.5_x64/usr/bin/ioc -input=mk-mclachlan-cl-rhs/ML_BSSN_CL_InitRHS.cl -asm=ML_BSSN_CL_InitRHS.cl.s
