@@ -14,10 +14,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef APPLE
-#include <OpenCL/opencl.h>
+
+#ifdef __APPLE__
+#  include <OpenCL/opencl.h>
 #else
-#include "CL/cl.h"
+#  include <CL/cl.h>
 #endif
 
 char *OpenCL_err_code (cl_int err_in);

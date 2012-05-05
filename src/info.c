@@ -1,16 +1,16 @@
-#include <string.h>
-#include <math.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
 #include <cctk.h>
 #include <cctk_Arguments.h>
 #include <cctk_Parameters.h>
 
-#ifdef APPLE
-#include <OpenCL/opencl.h>
+#include <math.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#ifdef __APPLE__
+#  include <OpenCL/opencl.h>
 #else
-#include "CL/cl.h"
+#  include <CL/cl.h>
 #endif
 
 // Two utility functions from "common"
