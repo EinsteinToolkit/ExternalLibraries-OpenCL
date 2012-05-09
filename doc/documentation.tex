@@ -156,6 +156,29 @@ and can be accessed at run time under a (globally visible) name
 \texttt{FILE} and are the thorn name and file name, respectively.
 (This is also explained in the users' guide.)
 
+\section{High-Level OpenCL Programming in Cactus}
+
+Cactus also offers a higher-level way of OpenCL programming,
+implemented in the thorns \texttt{OpenCLRunTime} and
+\texttt{Accelerator}.
+
+Thorn \texttt{OpenCLRunTime} provides a convenient function for
+executing OpenCL code. This function expects, as input, a string
+containing the OpenCL kernel code, and then calls this code.
+Lower-level tasks such as identifying available compute devices,
+initialising them, compiling the kernel (once, and then remembering
+it), and handling arguments and parameters are taken care of
+automatically. Details are described in this thorn's documentation.
+
+Thorn \texttt{Accelerator} simplifies memory management for GPUs and
+other types of devices. One declares in the thorn's schedule which
+routines read and write what variables, and \texttt{Accelerator} then
+keeps track which variables need to be copied at what time. It keeps
+track where (host and/or device) a variable has valid values, and
+copies data only when necessary, taking time level cycling,
+synchronisation, and I/O into account. Details are described in that
+thorn's documentation.
+
 
 
 \begin{thebibliography}{9}
