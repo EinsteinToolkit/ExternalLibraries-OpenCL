@@ -87,7 +87,7 @@
 % the date your document was last changed, if your document is in CVS,
 % please use:
 %    \date{$ $Date: 2004-01-07 14:12:39 -0600 (Wed, 07 Jan 2004) $ $}
-\date{July 11 2011}
+\date{May 9 2012}
 
 \maketitle
 
@@ -99,39 +99,63 @@
 
 % Add an abstract for this thorn's documentation
 \begin{abstract}
-
+  \emph{OpenCL} is a programming standard for heterogeneous systems,
+  i.e.\ for programming CPUs, GPUs, and other types of accelerators.
+  OpenCL is implemented as a library, and OpenCL codes are compiled at
+  run time by passing OpenCL routines, as strings, to the OpenCL
+  library. This is different e.g.\ from \texttt{CUDA}, which is
+  implemented as a language such as C or C++.
+  
+  This thorn \texttt{OpenCL} provides the configuration bits that
+  ensure that Cactus applications can use OpenCL libraries.
 \end{abstract}
 
-% The following sections are suggestive only.
-% Remove them or add your own.
+\section{OpenCL Programming}
 
-\section{Introduction}
+OpenCL is very similar to C\@. However, it differs from C in several
+key aspects:
+\begin{itemize}
+\item much smaller run-time library, consisting mostly of mathematical
+  functions (such as sqrt) and printf;
+\item built-in support for fine-grained and coarse-grainded
+  multi-threading;
+\item built-in support for vectorisation.
+\end{itemize}
+Given this, it is not possible to write a whole application in
+OpenCL\@. Instead, only the expensive parts (so-called \emph{compute
+  kernels}) are written in OpenCL, and are launched e.g.\ from C or
+C++.
 
-\section{Physical System}
+In addition, the hardware architecture of GPUs and other accelerators
+differs from CPUs in one key aspect:
+\begin{itemize}
+\item memory is separate from the host (regular CPU) memory.
+\end{itemize}
+That means that one has to explicitly copy data between the host
+memory and the device memory before and/or after calling compute
+kernels.
 
-\section{Numerical Implementation}
+\section{OpenCL Programming in Cactus}
 
-\section{Using This Thorn}
+Cactus supports OpenCL programming at several levels. At the lowest
+level, one can use this thorn \texttt{OpenCL} directly. While this
+works fine, it is somewhat tedious because one has to write a certain
+amount of boilerplate code to detect and initialise the device, to
+copy data between host and device, and to build and run compute
+kernels.
 
-\subsection{Obtaining This Thorn}
+Since OpenCL is implemented as a library, the flesh knows only little
+about OpenCL\@. For example, there are no configuration options to
+spedify an OpenCL compiler, since code is compiled at run time via a
+library call to which the source code is passed as string. There is,
+however, one way in which the flesh supports OpenCL: Files with a
+\texttt{.cl} suffix are converted into a string and placed into the
+executable. These strings have the type \texttt{char~const~*} in C,
+and can be accessed at run time under a (globally visible) name
+\texttt{OpenCL\_source\_THORN\_FILE}, where \texttt{THORN} and
+\texttt{FILE} and are the thorn name and file name, respectively.
+(This is also explained in the users' guide.)
 
-\subsection{Basic Usage}
-
-\subsection{Special Behaviour}
-
-\subsection{Interaction With Other Thorns}
-
-\subsection{Examples}
-
-\subsection{Support and Feedback}
-
-\section{History}
-
-\subsection{Thorn Source Code}
-
-\subsection{Thorn Documentation}
-
-\subsection{Acknowledgements}
 
 
 \begin{thebibliography}{9}
