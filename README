@@ -36,18 +36,21 @@ Unfortunately, they each have their drawbacks:
 
 - Apple: Included with the operating system, available by default.
   This supports both CPU and GPU. The compiler is based on LLVM.
-  Unfortunately, there seem to be serious bugs -- I can't get the cos
-  function to provide correct results.
+  Unfortunately, there seem to be serious bugs -- for example, I can't
+  get the cos function to provide correct results.
 
 - Intel: Available at
   <http://software.intel.com/en-us/articles/opencl-sdk/>. This
   supports only (Intel?) CPUs. The compiler is based on LLVM, and the
   implementation is also based on Intel's TBB (Threading Building
-  Blocks). I don't know how to disassemble the generated code, except
-  when there is a segfault.
+  Blocks).
 
-- NVidia: Available at <http://developer.nvidia.com/opencl>, included
+- Nvidia: Available at <http://developer.nvidia.com/opencl>, included
   in their CUDA distribution. This supports only GPUs.
+
+- pocl: Open source, available at <https://launchpad.net/pocl>. This
+  OpenCL implementation has not yet been released (current version is
+  0.6), and is based on LLVM.
 
 In addition, Wikipedia <http://en.wikipedia.org/wiki/OpenCL> lists two
 IBM implementations for their Power processor and for Intel compatible
