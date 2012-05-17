@@ -110,6 +110,69 @@
   ensure that Cactus applications can use OpenCL libraries.
 \end{abstract}
 
+
+
+\section{Introduction}
+
+OpenCL describes itself as:
+\begin{quote}  
+  OpenCL is the first open, royalty-free standard for cross-platform,
+  parallel programming of modern processors found in personal
+  computers, servers and handheld/embedded devices. OpenCL (Open
+  Computing Language) greatly improves speed and responsiveness for a
+  wide spectrum of applications in numerous market categories from
+  gaming and entertainment to scientific and medical software.
+\end{quote}
+More information is available at \url{http://www.khronos.org/opencl/}.
+
+
+
+\section{Availability}
+
+There seem to be four OpenCL implementations available at this time.
+Unfortunately, they each have their drawbacks:
+
+\begin{description}
+\item[AMD] Available at
+  \url{http://developer.amd.com/zones/openclzone/pages/default.aspx}.
+  This supports both CPUs and ATI GPUs. Unfortunately, the OpenCL
+  compiler seems to produce code with a low quality.
+\item[Apple] Included with the operating system, available by
+  default. This supports both CPU and GPU\@. The compiler is based on
+  LLVM\@. Unfortunately, there seem to be serious bugs -- for example,
+  I can't get the $cos$ function to provide correct results.
+\item[Intel] Available at
+  \url{http://software.intel.com/en-us/articles/opencl-sdk/}. This
+  supports only (Intel?) CPUs. The compiler is based on LLVM, and the
+  implementation is also based on Intel's TBB (Threading Building
+  Blocks).
+\item[Nvidia] Available at \url{http://developer.nvidia.com/opencl},
+  included in their CUDA distribution. This supports only GPUs.
+\item[pocl] Open source, available at
+  \url{https://launchpad.net/pocl}. This OpenCL implementation has not
+  yet been released (current version is 0.6), and is based on LLVM\@.
+\end{description}
+
+In addition, Wikipedia \url{http://en.wikipedia.org/wiki/OpenCL} lists
+two IBM implementations for their Power processor and for Intel
+compatible CPUs, respectively. The latter may be identical with or
+similar to AMD's implementation.
+
+Since OpenCL can run on CPUs, good OpenCL implementation are available
+at no cost for virtually all platforms.
+
+It is possible to install several OpenCL implementations
+(\emph{platforms}) at the same time, to build against any one of them,
+and then to choose at run time which devices from which platforms to
+use. For example, it is possible to build an application using the
+Intel implementation, and then at run time use the Nvidia platform to
+access a GPU (assuming that both Intel and Nvidia implementations are
+installed). On Unix, this is implemented via a system-wide
+configuration directory \texttt{/etc/OpenCL/vendors} that lists all
+OpenCL platforms that will be available at run time.
+
+
+
 \section{OpenCL Programming}
 
 OpenCL is very similar to C\@. However, it differs from C in several
@@ -135,6 +198,8 @@ That means that one has to explicitly copy data between the host
 memory and the device memory before and/or after calling compute
 kernels.
 
+
+
 \section{OpenCL Programming in Cactus}
 
 Cactus supports OpenCL programming at several levels. At the lowest
@@ -155,6 +220,8 @@ and can be accessed at run time under a (globally visible) name
 \texttt{OpenCL\_source\_THORN\_FILE}, where \texttt{THORN} and
 \texttt{FILE} and are the thorn name and file name, respectively.
 (This is also explained in the users' guide.)
+
+
 
 \section{High-Level OpenCL Programming in Cactus}
 
@@ -181,9 +248,9 @@ thorn's documentation.
 
 
 
-\begin{thebibliography}{9}
-
-\end{thebibliography}
+% \begin{thebibliography}{9}
+% 
+% \end{thebibliography}
 
 % Do not delete next line
 % END CACTUS THORNGUIDE
