@@ -70,15 +70,15 @@ fi
 ################################################################################
 
 # Set options
-if [ "${OPENCL_DIR}" != '/usr' -a "${OPENCL_DIR}" != '/usr/local' ]; then
-    : ${OPENCL_INC_DIRS:=${OPENCL_DIR}/include}
-    : ${OPENCL_LIB_DIRS:=${OPENCL_DIR}/lib}
-fi
+: ${OPENCL_INC_DIRS:=${OPENCL_DIR}/include}
+: ${OPENCL_LIB_DIRS:=${OPENCL_DIR}/lib}
 : ${OPENCL_LIBS:=OpenCL}
+
+OPENCL_INC_DIRS="$(${CCTK_HOME}/lib/sbin/strip-incdirs.sh ${OPENCL_INC_DIRS})"
+OPENCL_LIB_DIRS="$(${CCTK_HOME}/lib/sbin/strip-libdirs.sh ${OPENCL_LIB_DIRS})"
 
 # Pass options to Cactus
 echo "BEGIN MAKE_DEFINITION"
-echo "HAVE_OPENCL     = 1"
 echo "OPENCL_DIR      = ${OPENCL_DIR}"
 echo "OPENCL_INC_DIRS = ${OPENCL_INC_DIRS}"
 echo "OPENCL_LIB_DIRS = ${OPENCL_LIB_DIRS}"
