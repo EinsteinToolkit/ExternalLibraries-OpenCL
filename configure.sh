@@ -25,7 +25,7 @@ if [ -z "${OPENCL_DIR}" ]; then
     # look into each directory
     for dir in $DIRS; do
         # libraries might have different file extensions
-        for libext in a so dylib; do
+        for libext in a dll dll.a dylib so; do
             # libraries can be in /lib or /lib64
             for libdir in lib64 lib; do
                 FILES="$libdir/libOpenCL.${libext}"
